@@ -23,5 +23,3 @@
 1. El resto del formulario (Opciones de trackeo y demas) no tiene ninguna funcion. Hay que implementarlas.
 
 2. El visor de fases solo se actualiza al cambiar de video. No se mostraran fases nuevas hasta que el usuario no seleccione otro video.
-
-3. 
