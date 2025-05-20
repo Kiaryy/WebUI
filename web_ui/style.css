@@ -1,0 +1,167 @@
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    padding: 30px;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ddd7;
+}
+#loading {
+    display: none; 
+    text-align: center;
+}
+#loading img {
+    width: 50px; 
+}
+
+#form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+    border: 1px solid #666666;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.submit{
+    padding: 8px 15px;
+    background-color: rgb(233, 233, 233);
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+.submit:hover{
+    padding: 8px 15px;
+    background-color: rgb(208, 208, 215);
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+
+#form input{
+    padding: 8px 15px;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+
+.param-wrapper {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.trackerBayas, .nubeBayas, .qrDetectorBayas {
+    flex: 1 1 300px;
+    max-width: 400px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.trackerBayas h4,
+.nubeBayas h4, .qrDetectorBayas h4 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.plyViewerContainer {
+    display: block; 
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin-top: 40px;
+}
+
+.buttonPanel {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1;
+}
+
+.buttonPanel button {
+    padding: 10px 15px;
+    background-color: #f2f2f2;
+    border: 1px solid #888;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.buttonPanel button:hover {
+    background-color: #ddd;
+}
+
+
+#nextModelBtn{
+    display: none;
+}
+
+#recenterBtn{
+    display: none;
+}
+
+
+#loading {
+    display: none;
+}
+
+canvas {
+    display: block;
+}
+
+.buttonPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+#modelSelect {
+    padding: 5px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 200px; 
+}
+
+.fases, .phase1viewer, .phase2viewer{
+    display: none;
+}
+
+
+
+#tabButtons {
+    margin-bottom: 10px;
+}
+#tabButtons button {
+    margin-right: 8px;
+    padding: 8px 16px;
+    background-color: #eee;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#tabButtons button.active-tab {
+    background-color: #444;
+    color: white;
+}
+
+.tooltip-icon {
+    display: inline-block;
+    margin-left: 5px;
+    color: #555;
+    cursor: help;
+    font-weight: bold;
+}

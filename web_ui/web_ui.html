@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web UI</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Dependencias de graficador -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/PLYLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script type="module" src="send_input.js" defer></script>
+    <script type="module" src="ply_viewer.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        .tooltip-icon {
+            display: inline-block;
+            margin-left: 5px;
+            color: #555;
+            cursor: help;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="div-form">
+            <center><h1>Subir Video</h1></center>
+
+            <form id="form" enctype="multipart/form-data">
+                <label for="videoInput">Ingresar Videos</label><br>
+                <input type="file" id="videoInput" name="videoInput[]" accept="video/*" multiple required><br><br>
+
+                <div class="param-wrapper">
+                    <!-- parametros trackerBayas -->
+                    <div class="qrDetectorBayas">
+                        <h4>Detector de Bayas</h4>
+                        <p>Modo:
+                            <span class="tooltip-icon" title="Modo de deteccion">?</span>
+                        </p>
+                        <input type="radio" id="hibrido" name="qrMode" value="hibrido">
+                        <label for="hibrido">Hibrido</label><br>
+                        <input type="radio" id="pyzbar" name="qrMode" value="pyzbar">
+                        <label for="pyzbar">Pyzbar</label><br>
+
+                        <label for="numProcesses">Numero de Procesos
+                            <span class="tooltip-icon" title="Numeros de procesos que se usaran en la generacion del video.">?</span>
+                        </label>
+                        <input type="number" id="numProcesses" name="numProcesses" value="10"><br>
+
+                        <input type="checkbox" id="generarVideo" name="generarVideo" value="generarVideo">
+                        <label for="generarVideo"> Generar Video</label><br>
+                    </div>
+
+                    <div class="trackerBayas">
+                        <h4>Tracker Bayas</h4>
+                        <label for="radius">Radio
+                            <span class="tooltip-icon" title="Radio de las bayas.">?</span>
+                        </label><br>
+                        <input type="number" id="radius" name="radius" value="10"><br>
+
+                        <input type="checkbox" id="drawTracking" name="drawTracking" value="drawTracking">
+                        <label for="drawTracking"> Dibujar Trackeado</label><br>
+
+                        <input type="checkbox" id="drawCircles" name="drawCircles" value="drawCircles">
+                        <label for="drawCircles"> Dibujar Circulo</label><br>
+                    </div>
+
+                    <!-- parametros nubeBayas -->
+                    <div class="nubeBayas">
+                        <h4>Nube Bayas</h4>
+                        <label for="bayaTreshold">Umbral de Deteccion de Bayas</label>
+                        <input type="number" id="bayaTreshold" name="bayaTreshold"><br>
+
+                        <label for="qrTreshHold">Umbral de Deteccion de QR</label>
+                        <input type="number" id="qrTreshHold" name="qrTreshHold"><br>
+
+                        <label for="qrDist">Distancia QR</label><br>
+                        <input type="number" id="qrDist" name="qrDist" step="0.10"><br>
+
+                        <label for="minMer">Minimo Mer Aceptado
+                            <span class="tooltip-icon" title="Mínimo mer aceptado para dejar de realizar triangulaciones.">?</span>
+                        </label>
+                        <input type="number" id="minMer" name="minMer" step="0.10"><br>
+
+                        <label for="valIni">Distancia Inicial
+                            <span class="tooltip-icon" title="Distancia inicial de triangulación.">?</span>
+                        </label>
+                        <input type="number" id="valIni" name="valIni"><br>
+
+                        <label for="valFin">Distancia Final
+                            <span class="tooltip-icon" title="Distancia final de triangulación.">?</span>
+                        </label>
+                        <input type="number" id="valFin" name="valFin"><br>
+
+                        <label for="salto">Salto de Distancia
+                            <span class="tooltip-icon" title="Salto entre distancias de triangulacion.">?</span>
+                        </label>
+                        <input type="number" id="salto" name="salto"><br>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit">Subir</button>
+
+                <div id="loading">
+                    <p>Subiendo...</p>
+                    <img src="loading.gif" alt="Cargando...">
+                </div>
+            </form>
+        </div>
+
+        <!-- Container del graficador -->
+        <div class="plyViewerContainer" id="plyViewerContainer">
+            <div class="fases" id="fases">
+                <select class="itemSelect" id="itemSelect"></select>
+                <button id="downloadBtn" style="margin-left: 10px;">Descargar Output</button>
+            </div>
+            <div class="buttonPanel">
+                <button class="recenterBtn" id="recenterBtn">Centrar Modelo</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
